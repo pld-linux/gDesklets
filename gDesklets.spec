@@ -4,12 +4,12 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.26.1
+Version:	0.26.2
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
-# Source0-md5:	bae8006b869c6fb05064579f7593d449
+# Source0-md5:	f2629dcec5b198c3a8aeb8c19e4c740f
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-locale-names.patch
 URL:		http://gdesklets.gnomedesktop.org/
