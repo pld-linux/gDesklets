@@ -1,3 +1,6 @@
+#
+# Conditional build:
+%bcond_with	pygtk23	# build for use with python-pygtk-2.3.x from DEVEL
 
 %include	/usr/lib/rpm/macros.python
 
@@ -5,13 +8,14 @@ Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.26.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
 # Source0-md5:	f2629dcec5b198c3a8aeb8c19e4c740f
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-locale-names.patch
+Patch2:		%{name}-pygtk23.patch
 URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	autoconf
@@ -23,13 +27,21 @@ BuildRequires:	libgtop-devel >= 2.0.0
 BuildRequires:	libtool
 BuildRequires:	python >= 2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
+%if %{with pygtk23}
+BuildRequires:	python-pygtk-devel >= 2.3.94
+%else
 BuildRequires:	python-pygtk-devel >= 2.0.0
+%endif
 BuildRequires:	swig-python
 BuildRequires:	rpm-pythonprov
 BuildRequires:	gettext-devel
 Requires:	python >= 2.3
 Requires:	python-gnome >= 2.0.0
+%if %{with pygtk23}
+Requires:	python-pygtk-gtk >= 2.3.94
+%else
 Requires:	python-pygtk >= 2.0.0
+%endif
 Requires:	python-gnome-bonobo >= 2.0.0
 Requires:	python-gnome-bonobo-ui >= 2.0.0
 Requires:	python-gnome-gconf >= 2.0.0
@@ -48,6 +60,7 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%{?with_pygtk23:%patch2 -p1}
 
 mv po/{no,nb}.po
 
