@@ -3,7 +3,7 @@ Summary:	gDesklets provides an advanced architecture for desktop applets
 Summary(pl):	gDesklets udostêpnia zaawansowan± architekturê dla apletów
 Name:		gDesklets
 Version:	0.10
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{ver}.tar.bz2
@@ -41,9 +41,15 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/gdesklets/{Sensors,Displays}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%py_comp $RPM_BUILD_ROOT%{_datadir}/gdesklets
+%py_ocomp $RPM_BUILD_ROOT%{_datadir}/gdesklets
+
+find $RPM_BUILD_ROOT%{_datadir}/gdesklets -name "*.py" -exec rm -f {} \;
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -66,5 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gdesklets/main
 %{_datadir}/gdesklets/sensor
 %{_datadir}/gdesklets/utils
+%{_datadir}/gdesklets/Sensors
+%{_datadir}/gdesklets/Displays
 %{_desktopdir}/*
 %{_pixmapsdir}/*
