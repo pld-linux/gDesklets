@@ -15,7 +15,7 @@ URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	gtk+2-devel >= 2:2.2.0
 BuildRequires:	intltool
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgtop-devel >= 2.0.0
