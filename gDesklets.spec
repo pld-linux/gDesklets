@@ -8,7 +8,7 @@ Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.26.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
@@ -40,7 +40,7 @@ Requires:	python-gnome >= 2.0.0
 %if %{with pygtk23}
 Requires:	python-pygtk-gtk >= 2.3.94
 %else
-Requires:	python-pygtk >= 2.0.0
+Requires:	python-pygtk-gtk >= 2.0.0
 %endif
 Requires:	python-gnome-bonobo >= 2.0.0
 Requires:	python-gnome-bonobo-ui >= 2.0.0
