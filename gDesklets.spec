@@ -1,25 +1,25 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.20
+Version:	0.21
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
-# Source0-md5:	cd43447ef66744665d8bdf11f181d3d0
+# Source0-md5:	fd99ad248b4b8b7ab2e84a848e69be93
 URL:		http://www.pycage.de/software_gdesklets.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 Buildrequires:	python >= 2.3
-BuildRequires:	python-gnome-devel >= 1.99.18
-Buildrequires:	python-pygtk-devel >= 1.99.18
+BuildRequires:	python-gnome-devel >= 2.0.0
+Buildrequires:	python-pygtk-devel >= 2.0.0
 Requires:	%{name}-display
 Requires:	%{name}-sensor
 Requires:	python >= 2.3
-Requires:	python-gnome >= 1.99.18
-Requires:	python-pygtk >= 1.99.18
-Requires:	python-gnome-gconf >= 1.99.18
-Requires:	python-gnome-ui >= 1.99.18
+Requires:	python-gnome >= 2.0.0
+Requires:	python-pygtk >= 2.0.0
+Requires:	python-gnome-gconf >= 2.0.0
+Requires:	python-gnome-ui >= 2.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,7 +36,8 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 %{__autoconf}
 %{__automake}
 %configure
-%{__make}
+%{__make} \
+	CFLAGS="%{rpmcflags} -I/usr/include/python2.3"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -67,6 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gdesklets/desktop
 %{_datadir}/gdesklets/display
 %{_datadir}/gdesklets/factory
+%{_datadir}/gdesklets/libdesklets
 %dir %{_datadir}/gdesklets/locale
 %lang(ar) %{_datadir}/gdesklets/locale/ar
 %lang(de) %{_datadir}/gdesklets/locale/de
@@ -75,6 +77,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(he) %{_datadir}/gdesklets/locale/he
 %lang(nl) %{_datadir}/gdesklets/locale/nl
 %lang(pl) %{_datadir}/gdesklets/locale/pl
+%lang(pt) %{_datadir}/gdesklets/locale/pt
+%lang(sq) %{_datadir}/gdesklets/locale/sq
+%lang(sr) %{_datadir}/gdesklets/locale/sr
+%lang(sr@Latn) %{_datadir}/gdesklets/locale/sr@Latn
+%lang(sv) %{_datadir}/gdesklets/locale/sv
 %{_datadir}/gdesklets/main
 %{_datadir}/gdesklets/sensor
 %{_datadir}/gdesklets/utils
@@ -83,3 +90,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_iconsdir}/gnome/48x48/mimetypes/*.png
+%{_mandir}/man1/*
