@@ -5,11 +5,12 @@ Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.23
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
 # Source0-md5:	14beb76893e1f7f8f90b8a0b37a6856a
+Patch0:		%{name}-install-schemas.patch
 URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -24,6 +25,7 @@ Requires:	python-gnome >= 2.0.0
 Requires:	python-pygtk >= 2.0.0
 Requires:	python-gnome-gconf >= 2.0.0
 Requires:	python-gnome-ui >= 2.0.0
+Requires(post): GConf2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -34,12 +36,15 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__aclocal}
 %{__automake}
 #%%{__autoconf} #disabled because it fuck up everything.... WHY ??? */
-%configure
+%configure \
+	--disable-schemas-install
+	
 %{__make} \
 	CFLAGS="%{rpmcflags}"
 
@@ -58,6 +63,9 @@ find $RPM_BUILD_ROOT%{_datadir}/gdesklets -name "*.py" -exec rm -f {} \;
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+%gconf_schema_install
+                                                                                
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
