@@ -4,13 +4,14 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.23
-Release:	2
+Version:	0.24.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
-# Source0-md5:	14beb76893e1f7f8f90b8a0b37a6856a
+# Source0-md5:	2187806b52bb81b1a88f6caf6197a4d1
 Patch0:		%{name}-install-schemas.patch
+Patch1:		%{name}-am.patch
 URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -36,11 +37,12 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__aclocal}
 %{__automake}
-#%%{__autoconf} #disabled because it fuck up everything.... WHY ??? */
+%{__autoconf} #disabled because it fuck up everything.... WHY ??? */
 %configure \
 	--disable-schemas-install
 	
@@ -90,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sr) %{_datadir}/gdesklets/locale/sr
 %lang(sr@Latn) %{_datadir}/gdesklets/locale/sr@Latn
 %lang(sv) %{_datadir}/gdesklets/locale/sv
+%lang(az) %{_datadir}/gdesklets/locale/az
+%lang(de_BY) %{_datadir}/gdesklets/locale/de_BY
+%lang(ms) %{_datadir}/gdesklets/locale/ms
 %{_datadir}/gdesklets/config
 %{_datadir}/gdesklets/data
 %{_datadir}/gdesklets/desktop
