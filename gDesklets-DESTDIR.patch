@@ -1,154 +1,21 @@
-diff -urN aaa/gDesklets-0.10/config/Makefile.am gDesklets-0.10/config/Makefile.am
---- aaa/gDesklets-0.10/config/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/config/Makefile.am	2003-08-11 16:50:39.000000000 +0200
-@@ -7,7 +7,7 @@
- EXTRA_DIST = $(install_DATA)
- 
- install-data-hook:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi
-diff -urN aaa/gDesklets-0.10/data/Makefile.am gDesklets-0.10/data/Makefile.am
---- aaa/gDesklets-0.10/data/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/data/Makefile.am	2003-08-11 16:49:07.000000000 +0200
-@@ -34,9 +34,9 @@
- # We need a pixmapdir relative to the main python script so that the beast can
- # be run from our source tree without modification
- install-data-hook:
--	if test '!' -d $(fakepixmapdir); then \
-+	if test '!' -d $(DESTDIR)$(fakepixmapdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(fakepixmapdir); \
--		chmod 0755 $(fakepixmapdir); \
-+		chmod 0755 $(DESTDIR)$(fakepixmapdir); \
- 	fi; \
- 	\
--	$(LN_S) -f $(PIXMAPDIR)/gdesklets.png $(fakepixmapdir)/gdesklets.png;
-+	$(LN_S) -f $(PIXMAPDIR)/gdesklets.png $(DESTDIR)$(fakepixmapdir)/gdesklets.png;
-diff -urN aaa/gDesklets-0.10/desktop/Makefile.am gDesklets-0.10/desktop/Makefile.am
---- aaa/gDesklets-0.10/desktop/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/desktop/Makefile.am	2003-08-11 16:49:37.000000000 +0200
-@@ -7,7 +7,7 @@
- EXTRA_DIST = $(install_DATA)
- 
- install-data-hook:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi
-diff -urN aaa/gDesklets-0.10/display/Makefile.am gDesklets-0.10/display/Makefile.am
---- aaa/gDesklets-0.10/display/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/display/Makefile.am	2003-08-11 16:49:56.000000000 +0200
-@@ -20,7 +20,7 @@
- EXTRA_DIST = $(install_DATA)
- 
- install-data-hook:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi
-diff -urN aaa/gDesklets-0.10/factory/Makefile.am gDesklets-0.10/factory/Makefile.am
---- aaa/gDesklets-0.10/factory/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/factory/Makefile.am	2003-08-11 16:50:15.000000000 +0200
-@@ -7,7 +7,7 @@
- EXTRA_DIST = $(install_DATA)
- 
- install-data-hook:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi
-diff -urN aaa/gDesklets-0.10/locale/Makefile.am gDesklets-0.10/locale/Makefile.am
---- aaa/gDesklets-0.10/locale/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/locale/Makefile.am	2003-08-11 16:52:10.000000000 +0200
-@@ -5,13 +5,13 @@
- 	python install_locales.py;
- 
- install-data-am:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi;
- 
- 	for i in $(ALL_LINGUAS); do \
--		if test '!' -d $(installdir)/$$i/LC_MESSAGES; then \
-+		if test '!' -d $(DESTDIR)$(installdir)/$$i/LC_MESSAGES; then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir)/$$i/LC_MESSAGES; \
- 		chmod 0755 $(DESTDIR)$(installdir)/$$i; \
- 		chmod 0755 $(DESTDIR)$(installdir)/$$i/LC_MESSAGES; \
-diff -urN aaa/gDesklets-0.10/main/Makefile.am gDesklets-0.10/main/Makefile.am
---- aaa/gDesklets-0.10/main/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/main/Makefile.am	2003-08-11 16:51:00.000000000 +0200
-@@ -7,7 +7,7 @@
- EXTRA_DIST = $(install_DATA)
- 
- install-data-hook:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi
-diff -urN aaa/gDesklets-0.10/Makefile.am gDesklets-0.10/Makefile.am
---- aaa/gDesklets-0.10/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/Makefile.am	2003-08-11 16:47:45.000000000 +0200
-@@ -30,15 +30,15 @@
- pkgconfig_DATA = gdesklets-core.pc
- 
- install-data-hook:
--	if test '!' -d $(coredir); then \
--		$(mkinstalldirs) $(coredir); \
--		chmod 0755 $(coredir); \
-+	if test '!' -d $(DESTDIR)$(coredir); then \
-+		$(mkinstalldirs) $(DESTDIR)$(coredir); \
-+		chmod 0755 $(DESTDIR)$(coredir); \
+diff -urN aaa/gDesklets-0.12/data/Makefile.am gDesklets-0.12/data/Makefile.am
+--- aaa/gDesklets-0.12/data/Makefile.am	2003-08-17 17:09:22.000000000 +0200
++++ gDesklets-0.12/data/Makefile.am	2003-08-17 22:00:53.000000000 +0200
+@@ -61,7 +61,7 @@
+ 		chmod 0755 $(DESTDIR)$(fakepixmapdir); \
  	fi
  
--	if test '!' -d $(bindir); then \
--		$(mkinstalldirs) $(bindir); \
--		chmod 0755 $(bindir); \
-+	if test '!' -d $(DESTDIR)$(bindir); then \
-+		$(mkinstalldirs) $(DESTDIR)$(bindir); \
-+		chmod 0755 $(DESTDIR)$(bindir); \
+-	$(LN_S) -f $(DESTDIR)$(PIXMAPDIR)/gdesklets.png \
++	$(LN_S) -f $(PIXMAPDIR)/gdesklets.png \
+ 	$(DESTDIR)$(fakepixmapdir)/gdesklets.png;
+ 
+ if USERINST
+diff -urN aaa/gDesklets-0.12/Makefile.am gDesklets-0.12/Makefile.am
+--- aaa/gDesklets-0.12/Makefile.am	2003-08-17 17:09:22.000000000 +0200
++++ gDesklets-0.12/Makefile.am	2003-08-17 22:00:11.000000000 +0200
+@@ -39,4 +39,4 @@
  	fi
  
--	$(INSTALL_SCRIPT) gdesklets ${coredir}/gdesklets;
--	$(LN_S) -f ${coredir}/gdesklets $(bindir)/gdesklets;
-+	$(INSTALL_SCRIPT) gdesklets $(DESTDIR)${coredir}/gdesklets;
+ 	$(INSTALL_SCRIPT) gdesklets $(DESTDIR)${coredir}/gdesklets; \
+-	$(LN_S) -f $(DESTDIR)${coredir}/gdesklets $(DESTDIR)$(bindir)/gdesklets;
 +	$(LN_S) -f ${coredir}/gdesklets $(DESTDIR)$(bindir)/gdesklets;
-diff -urN aaa/gDesklets-0.10/sensor/Makefile.am gDesklets-0.10/sensor/Makefile.am
---- aaa/gDesklets-0.10/sensor/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/sensor/Makefile.am	2003-08-11 16:51:14.000000000 +0200
-@@ -9,7 +9,7 @@
- EXTRA_DIST = $(install_DATA)
- 
- install-data-hook:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi
-diff -urN aaa/gDesklets-0.10/utils/Makefile.am gDesklets-0.10/utils/Makefile.am
---- aaa/gDesklets-0.10/utils/Makefile.am	2003-08-10 12:30:13.000000000 +0200
-+++ gDesklets-0.10/utils/Makefile.am	2003-08-11 16:51:38.000000000 +0200
-@@ -14,7 +14,7 @@
- EXTRA_DIST = $(install_DATA)
- 
- install-data-hook:
--	if test '!' -d $(installdir); then \
-+	if test '!' -d $(DESTDIR)$(installdir); then \
- 		$(mkinstalldirs) $(DESTDIR)$(installdir); \
--		chmod 0755 $(installdir); \
-+		chmod 0755 $(DESTDIR)$(installdir); \
- 	fi
