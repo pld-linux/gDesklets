@@ -1,6 +1,6 @@
 %define	ver	0_10
-Summary:	gDesklets provides an advanced architecture for desktop applets
-Summary(pl):	gDesklets udostêpnia zaawansowan± architekturê dla apletów
+Summary:	gDesklets - an advanced architecture for desktop applets
+Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.10
 Release:	1.1
