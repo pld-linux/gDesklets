@@ -14,7 +14,7 @@ diff -urN gDesklets-0.26.2.orig/libdesklets/Disk.py gDesklets-0.26.2/libdesklets
      #
      def __poll_size(self, partition):
 -
--        blocks, bfree, bavail, files, ffree = glibtop.get_fsusage(partition)
+-        blocks, bfree, bavail, files, ffree = glibtop.get_fsusage(partition)[:5]
 -        free = float(bfree * 512)
 -        total = float(blocks * 512)
 -        used = total - free

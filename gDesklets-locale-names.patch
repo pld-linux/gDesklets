@@ -5,8 +5,8 @@ diff -urN aa/gDesklets-0.26/configure.in gDesklets-0.26/configure.in
  PYTHON_CFLAGS="-I$PYTHONINC"
  AC_SUBST(PYTHON_CFLAGS)
  
--ALL_LINGUAS="ar az ca cs de el es eu fr he hr it ja lt ms nl no pl pt pt_BR ru sq sr sr@Latn sv tr ko"
-+ALL_LINGUAS="ar az ca cs de el es eu fr he hr it ja lt ms nb nl pl pt pt_BR ru sq sr sr@Latn sv tr ko"
+-ALL_LINGUAS="ar az bg ca cs de el en_CA en_GB es eu fr he hr hu is it ja lt ms nl no pl pt pt_BR ru sq sr sr@Latn sv tr ko"
++ALL_LINGUAS="ar az bg ca cs de el en_CA en_GB es eu fr he hr hu is it ja lt ms nb nl pl pt pt_BR ru sq sr sr@Latn sv tr ko"
  AC_SUBST(ALL_LINGUAS)
  GETTEXT_PACKAGE=gdesklets
  AC_SUBST(GETTEXT_PACKAGE)
