@@ -1,18 +1,23 @@
+
+%include	/usr/lib/rpm/macros.python
+
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.21.2
-Release:	1
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
 # Source0-md5:	1c7509b454e41d443c2bda43c4472a05
-URL:		http://www.pycage.de/software_gdesklets.html
+Patch0:		%{name}-python-detect.patch
+URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-Buildrequires:	python >= 2.3
+BuildRequires:	python >= 2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
-Buildrequires:	python-pygtk-devel >= 2.0.0
+BuildRequires:	python-pygtk-devel >= 2.0.0
+BuildRequires:	swig-python
 Requires:	%{name}-display
 Requires:	%{name}-sensor
 Requires:	python >= 2.3
@@ -30,14 +35,15 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 
 %prep
 %setup -q
+#%patch0 -p1
 
 %build
 %{__aclocal}
-%{__autoconf}
 %{__automake}
+#%%{__autoconf} #disabled because it fuck up everything.... WHY ??? */
 %configure
 %{__make} \
-	CFLAGS="%{rpmcflags} -I/usr/include/python2.3"
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
