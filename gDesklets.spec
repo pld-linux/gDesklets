@@ -26,7 +26,6 @@ BuildRequires:	python >= 1:2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
 BuildRequires:	rpm-pythonprov
-BuildRequires:	swig-python
 %pyrequires_eq	python
 Requires:	python-gnome >= 2.0.0
 Requires:	python-gnome-bonobo >= 2.0.0
@@ -140,7 +139,7 @@ umask 022
 %{_libdir}/gdesklets/libdesklets/controls/*.py[co]
 %dir %{_libdir}/gdesklets/libdesklets/system
 %{_libdir}/gdesklets/libdesklets/system/*.py[co]
-%{_libdir}/gdesklets/libdesklets/system/*.so
+%attr(755,root,root) %{_libdir}/gdesklets/libdesklets/system/*.so
 %dir %{_libdir}/gdesklets/libdesklets/system/FreeBSD
 %{_libdir}/gdesklets/libdesklets/system/FreeBSD/*.py[co]
 %dir %{_libdir}/gdesklets/libdesklets/system/Linux
