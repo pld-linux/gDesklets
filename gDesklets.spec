@@ -14,14 +14,12 @@ URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	python >= 2.3
-BuildRequires:	python-modules >= 2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
 BuildRequires:	swig-python
 Requires:	%{name}-display
 Requires:	%{name}-sensor
 Requires:	python >= 2.3
-Requires:	python-modules >= 2.3
 Requires:	python-gnome >= 2.0.0
 Requires:	python-pygtk >= 2.0.0
 Requires:	python-gnome-gconf >= 2.0.0
