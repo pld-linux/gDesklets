@@ -1,0 +1,12 @@
+diff -urN aa/gDesklets-0.30/plugin/PluginRegistry.py gDesklets-0.30/plugin/PluginRegistry.py
+--- aa/gDesklets-0.30/plugin/PluginRegistry.py	2004-08-12 21:58:04.000000000 +0200
++++ gDesklets-0.30/plugin/PluginRegistry.py	2004-08-25 19:11:35.228904960 +0200
+@@ -46,7 +46,7 @@
+         
+         for f in files:
+             pluginpath = os.path.join(repo, f)
+-            if (os.path.exists(os.path.join(pluginpath, "__init__.py"))):
++            if (os.path.exists(os.path.join(pluginpath, "__init__.pyc"))):
+                 cwd = os.getcwd()
+ 
+                 try:
