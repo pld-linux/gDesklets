@@ -1,22 +1,24 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.12.1
+Version:	0.13
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.gz
-# Source0-md5:	1afe28a592e9120f411eaa5c91d6d915
+Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
+# Source0-md5:	b7e93e0064629b5630393425462105eb
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.pycage.de/software_gdesklets.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 Buildrequires:	python >= 2.3
-BuildRequires:	python-gnome-devel >= 1.99.14
-Buildrequires:	python-pygtk-devel >= 1.99.14
+BuildRequires:	python-gnome-devel >= 1.99.18
+Buildrequires:	python-pygtk-devel >= 1.99.18
+Requires:	%{name}-display
+Requires:	%{name}-sensor
 Requires:	python >= 2.3
-Requires:	python-gnome >= 1.99.14
-Requires:	python-pygtk >= 1.99.14
+Requires:	python-gnome >= 1.99.18
+Requires:	python-pygtk >= 1.99.18
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -65,7 +67,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gdesklets/desktop
 %{_datadir}/gdesklets/display
 %{_datadir}/gdesklets/factory
-%{_datadir}/gdesklets/locale
+%dir %{_datadir}/gdesklets/locale
+%lang(ar) %{_datadir}/gdesklets/locale/ar
+%lang(de) %{_datadir}/gdesklets/locale/de
+%lang(fr) %{_datadir}/gdesklets/locale/fr
+%lang(he) %{_datadir}/gdesklets/locale/he
+%lang(nl) %{_datadir}/gdesklets/locale/nl
+%lang(pl) %{_datadir}/gdesklets/locale/pl
 %{_datadir}/gdesklets/main
 %{_datadir}/gdesklets/sensor
 %{_datadir}/gdesklets/utils
