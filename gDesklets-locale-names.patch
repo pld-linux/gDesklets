@@ -1,0 +1,12 @@
+diff -urN aa/gDesklets-0.26/configure.in gDesklets-0.26/configure.in
+--- aa/gDesklets-0.26/configure.in	2004-02-10 13:40:43.000000000 +0100
++++ gDesklets-0.26/configure.in	2004-02-23 11:20:19.973570088 +0100
+@@ -32,7 +32,7 @@
+ PYTHON_CFLAGS="-I$PYTHONINC"
+ AC_SUBST(PYTHON_CFLAGS)
+ 
+-ALL_LINGUAS="ar az ca cs de el es eu fr he hr it ja lt ms nl no pl pt pt_BR ru sq sr sr@Latn sv tr ko"
++ALL_LINGUAS="ar az ca cs de el es eu fr he hr it ja lt ms nb nl pl pt pt_BR ru sq sr sr@Latn sv tr ko"
+ AC_SUBST(ALL_LINGUAS)
+ GETTEXT_PACKAGE=gdesklets
+ AC_SUBST(GETTEXT_PACKAGE)
