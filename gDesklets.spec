@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_with	pygtk23	# build for use with python-pygtk-2.3.x from DEVEL
 
-%include	/usr/lib/rpm/macros.python
 
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
