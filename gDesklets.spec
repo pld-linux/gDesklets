@@ -26,6 +26,7 @@ Requires:	python-pygtk >= 2.0.0
 Requires:	python-gnome-bonobo >= 2.0.0
 Requires:	python-gnome-bonobo-ui >= 2.0.0
 Requires:	python-gnome-gconf >= 2.0.0
+Requires:	python-gnome-gtkhtml >= 2.0.0
 Requires:	python-gnome-ui >= 2.0.0
 Requires(post): GConf2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
