@@ -82,4 +82,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gdesklets/Displays
 %{_desktopdir}/*
 %{_pixmapsdir}/*
-%{_datadir}/icons/gnome/48x48/mimetypes/*.png
+%{_iconsdir}/gnome/48x48/mimetypes/*.png
