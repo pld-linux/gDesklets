@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %gconf_schema_install
-                                                                                
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
