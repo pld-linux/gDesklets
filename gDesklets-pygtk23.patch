@@ -1,0 +1,59 @@
+diff -urN aa/gDesklets-0.26.2/desktop/GlassWindow.py gDesklets-0.26.2/desktop/GlassWindow.py
+--- aa/gDesklets-0.26.2/desktop/GlassWindow.py	2004-07-22 22:30:56.720122256 +0200
++++ gDesklets-0.26.2/desktop/GlassWindow.py	2004-07-22 22:32:21.839182192 +0200
+@@ -181,8 +181,8 @@
+         self.queue_draw()
+ 
+         # wait long enough for the window to disappear; does this work always?
+-        while (gtk.gdk.events_pending()): gtk.mainiteration()
+-        gtk.mainiteration()
++        while (gtk.gdk.events_pending()): gtk.main_iteration()
++        gtk.main_iteration()
+         
+         self.__bg_root = desktop.get_wallpaper_fallback(x, y, width, height)
+         self.show()
+diff -urN aa/gDesklets-0.26.2/gdesklets gDesklets-0.26.2/gdesklets
+--- aa/gDesklets-0.26.2/gdesklets	2004-07-22 22:30:56.424167248 +0200
++++ gDesklets-0.26.2/gdesklets	2004-07-22 22:33:06.164443728 +0200
+@@ -79,4 +79,4 @@
+ # might be removed
+ gtk.timeout_add(60000, gc_collect)
+ 
+-gtk.mainloop()
++gtk.main()
+diff -urN aa/gDesklets-0.26.2/main/__init__.py gDesklets-0.26.2/main/__init__.py
+--- aa/gDesklets-0.26.2/main/__init__.py	2004-07-22 22:30:56.964085168 +0200
++++ gDesklets-0.26.2/main/__init__.py	2004-07-22 22:41:58.741479712 +0200
+@@ -59,7 +59,7 @@
+     signal.signal(signal.SIGCHLD, chldhandler)
+     
+     # install signal handler to quit on Ctrl-C
+-    signal.signal(signal.SIGINT, gtk.mainquit)
++    signal.signal(signal.SIGINT, gtk.main_quit)
+ 
+ 
+     #
+diff -urN aa/gDesklets-0.26.2/main/Starter.py gDesklets-0.26.2/main/Starter.py
+--- aa/gDesklets-0.26.2/main/Starter.py	2004-07-22 22:30:56.964085168 +0200
++++ gDesklets-0.26.2/main/Starter.py	2004-07-22 22:32:27.708289952 +0200
+@@ -103,7 +103,7 @@
+ 
+         while (not callback()):
+             gtk.threads_enter()
+-            gtk.mainiteration()
++            gtk.main_iteration()
+             gtk.threads_leave()
+             
+ 
+diff -urN aa/gDesklets-0.26.2/utils/dialog.py gDesklets-0.26.2/utils/dialog.py
+--- aa/gDesklets-0.26.2/utils/dialog.py	2004-07-22 22:30:57.179052488 +0200
++++ gDesklets-0.26.2/utils/dialog.py	2004-07-22 22:32:36.520950224 +0200
+@@ -103,7 +103,7 @@
+             bar.set_fraction(value / 100.0)
+             bar.set_text("%i%%" % value)
+ 
+-        while (gtk.events_pending()): gtk.mainiteration()
++        while (gtk.events_pending()): gtk.main_iteration()
+ 
+ 
+     return f
