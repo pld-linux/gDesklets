@@ -11,12 +11,16 @@ Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
 # Source0-md5:	a13af8ab694fd7e1ef2ef21634aa3e39
 Patch0:		%{name}-am.patch
+Patch1:		%{name}-locale-names.patch
 URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	intltool
+BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgtop-devel >= 2.0.0
+BuildRequires:	libtool
 BuildRequires:	python >= 2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
@@ -42,8 +46,12 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+
+mv po/{no,nb}.po
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__automake}
 %{__autoconf}
@@ -97,8 +105,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(tr) %{_datadir}/gdesklets/locale/tr
 %lang(fr) %{_datadir}/gdesklets/locale/fr
 %lang(he) %{_datadir}/gdesklets/locale/he
+%lang(nb) %{_datadir}/gdesklets/locale/nb
 %lang(nl) %{_datadir}/gdesklets/locale/nl
-%lang(no) %{_datadir}/gdesklets/locale/no
 %lang(pl) %{_datadir}/gdesklets/locale/pl
 %lang(pt) %{_datadir}/gdesklets/locale/pt
 %lang(pt_BR) %{_datadir}/gdesklets/locale/pt_BR
