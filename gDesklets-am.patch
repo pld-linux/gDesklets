@@ -56,8 +56,8 @@ diff -Nuard gDesklets-0.24.1.orig/tools/Makefile.am gDesklets-0.24.1/tools/Makef
 @@ -1,6 +1,6 @@
  bin_PROGRAMS = gdesklets-display-thumbnailer
  
--CFLAGS = -Wall                          \
+-AM_CFLAGS = -Wall                          \
 +gdesklets_display_thumbnailer_CFLAGS = -Wall                          \
-         -Wstrict-prototypes             \
-         -Wmissing-prototypes            \
-         -DG_DISABLE_DEPRECATED          \
+             -Wstrict-prototypes             \
+             -Wmissing-prototypes            \
+             -DG_DISABLE_DEPRECATED          \
