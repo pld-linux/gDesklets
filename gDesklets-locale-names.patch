@@ -1,12 +1,11 @@
-diff -urN aa/gDesklets-0.26/configure.in gDesklets-0.26/configure.in
---- aa/gDesklets-0.26/configure.in	2004-02-10 13:40:43.000000000 +0100
-+++ gDesklets-0.26/configure.in	2004-02-23 11:20:19.973570088 +0100
-@@ -32,7 +32,7 @@
- PYTHON_CFLAGS="-I$PYTHONINC"
- AC_SUBST(PYTHON_CFLAGS)
+--- gDesklets-0.33/configure.in.wiget	2005-01-03 09:01:44.567506649 +0100
++++ gDesklets-0.33/configure.in	2005-01-03 09:03:01.740162941 +0100
+@@ -85,7 +85,7 @@
+ AC_SUBST(TILING_CFLAGS)
+ AC_SUBST(TILING_LIBS)
  
--ALL_LINGUAS="ar az bg ca cs de el en_CA en_GB es eu fr he hr hu is it ja lt ms nl no pl pt pt_BR ru sq sr sr@Latn sv tr ko"
-+ALL_LINGUAS="ar az bg ca cs de el en_CA en_GB es eu fr he hr hu is it ja lt ms nb nl pl pt pt_BR ru sq sr sr@Latn sv tr ko"
+-ALL_LINGUAS="ar az bg ca cs de el en_CA en_GB es eu fr he hr hu is it ja lt ms nl no pa pl pt pt_BR ru sq sr sr@Latn sv tr ko uk"
++ALL_LINGUAS="ar az bg ca cs de el en_CA en_GB es eu fr he hr hu is it ja lt ms nb nl pa pl pt pt_BR ru sq sr sr@Latn sv tr ko uk"
  AC_SUBST(ALL_LINGUAS)
  GETTEXT_PACKAGE=gdesklets
  AC_SUBST(GETTEXT_PACKAGE)

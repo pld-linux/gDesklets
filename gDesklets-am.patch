@@ -1,58 +1,5 @@
-diff -Nuard gDesklets-0.24.1.orig/acinclude.m4 gDesklets-0.24.1/acinclude.m4
---- gDesklets-0.24.1.orig/acinclude.m4	1970-01-01 01:00:00.000000000 +0100
-+++ gDesklets-0.24.1/acinclude.m4	2003-11-16 23:44:03.000000000 +0100
-@@ -0,0 +1,25 @@
-+dnl a macro to check for ability to create python extensions
-+dnl  AM_CHECK_PYTHON_HEADERS([ACTION-IF-POSSIBLE], [ACTION-IF-NOT-POSSIBLE])
-+dnl function also defines PYTHON_INCLUDES
-+AC_DEFUN([AM_CHECK_PYTHON_HEADERS],
-+[AC_REQUIRE([AM_PATH_PYTHON])
-+AC_MSG_CHECKING(for headers required to compile python extensions)
-+dnl deduce PYTHON_INCLUDES
-+py_prefix=`$PYTHON -c "import sys; print sys.prefix"`
-+py_exec_prefix=`$PYTHON -c "import sys; print sys.exec_prefix"`
-+PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"
-+if test "$py_prefix" != "$py_exec_prefix"; then
-+  PYTHON_INCLUDES="$PYTHON_INCLUDES -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
-+fi
-+AC_SUBST(PYTHON_INCLUDES)
-+dnl check if the headers exist:
-+save_CPPFLAGS="$CPPFLAGS"
-+CPPFLAGS="$CPPFLAGS $PYTHON_INCLUDES"
-+AC_TRY_CPP([#include <Python.h>],dnl
-+[AC_MSG_RESULT(found)
-+$1],dnl
-+[AC_MSG_RESULT(not found)
-+$2])
-+CPPFLAGS="$save_CPPFLAGS"
-+])
-+
-diff -Nuard gDesklets-0.24.1.orig/configure.in gDesklets-0.24.1/configure.in
---- gDesklets-0.24.1.orig/configure.in	2003-11-10 14:15:50.000000000 +0100
-+++ gDesklets-0.24.1/configure.in	2003-11-16 23:46:29.000000000 +0100
-@@ -10,7 +10,7 @@
- AC_PROG_INTLTOOL
- AC_PROG_LN_S
- 
--AM_PATH_PYTHON
-+AM_PATH_PYTHON(2.2)
- 
- GDESKLETS_CORE_REQS="gnome-python-2.0 >= 1.99.17 pygtk-2.0 >= 1.99.17 gdk-2.0 gtk+-2.0 libgtop-2.0 >= 2.0.0"
- AC_SUBST(GDESKLETS_CORE_REQS)
-@@ -19,8 +19,8 @@
- AC_SUBST(PACKAGE_CFLAGS)
- AC_SUBST(PACKAGE_LIBS)
- 
--CHECK_PYTHON_INCLUDE
--PYTHON_CFLAGS="-I$PYTHONINC"
-+AM_CHECK_PYTHON_HEADERS(,[AC_MSG_ERROR(could not find Python headers)])
-+PYTHON_CFLAGS="$PYTHON_INCLUDES"
- AC_SUBST(PYTHON_CFLAGS)
- 
- ALL_LINGUAS="ar az de de_BY el es fr he ms nl pl pt sq sr sr@Latn sv tr ko"
-diff -Nuard gDesklets-0.24.1.orig/tools/Makefile.am gDesklets-0.24.1/tools/Makefile.am
---- gDesklets-0.24.1.orig/tools/Makefile.am	2003-11-07 17:55:34.000000000 +0100
-+++ gDesklets-0.24.1/tools/Makefile.am	2003-11-16 23:26:49.000000000 +0100
+--- gDesklets-0.33/tools/Makefile.am.wiget	2003-12-09 18:53:21.000000000 +0100
++++ gDesklets-0.33/tools/Makefile.am	2005-01-03 08:54:36.090980834 +0100
 @@ -1,6 +1,6 @@
  bin_PROGRAMS = gdesklets-display-thumbnailer
  
@@ -61,3 +8,17 @@ diff -Nuard gDesklets-0.24.1.orig/tools/Makefile.am gDesklets-0.24.1/tools/Makef
              -Wstrict-prototypes             \
              -Wmissing-prototypes            \
              -DG_DISABLE_DEPRECATED          \
+
+--- gDesklets-0.33/configure.in.wiget	2005-01-01 18:04:48.000000000 +0100
++++ gDesklets-0.33/configure.in	2005-01-03 08:59:46.739872833 +0100
+@@ -53,8 +53,8 @@
+     AC_MSG_RESULT(no)
+ fi
+ 
+-AM_PATH_PYTHON([2.3])
+-PYTHON_PREFIX=`python -c "import sys; print sys.prefix"`
++AM_PATH_PYTHON([2.4])
++PYTHON_PREFIX=`$PYTHON -c "import sys; print sys.prefix"`
+ PYTHON_CFLAGS="-I$PYTHON_PREFIX/include/python$PYTHON_VERSION"
+ AC_CHECK_HEADER([$PYTHON_PREFIX/include/python$PYTHON_VERSION/Python.h],,
+     AC_ERROR([Can't find Python.h! You will need the python development package

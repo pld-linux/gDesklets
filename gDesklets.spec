@@ -1,12 +1,12 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.30
-Release:	5
+Version:	0.33
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
-# Source0-md5:	20c0d1c4aff84ea29ec777b72319045c
+# Source0-md5:	9fe413c1614416be4e55735ad2de8cd6
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-locale-names.patch
 Patch2:		%{name}-disksize.patch
@@ -48,8 +48,8 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch1 -p1 -b .wiget
+#%%patch2 -p1
 %patch3 -p1
 
 mv po/{no,nb}.po
@@ -80,6 +80,8 @@ find $RPM_BUILD_ROOT%{_datadir}/gdesklets -name "*.py" -exec rm -f {} \;
 rm -f $RPM_BUILD_ROOT%{_datadir}/mime/{XMLnamespaces,globs,magic,application/*}
 rm -f $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 
+%find_lang gdesklets
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -93,63 +95,109 @@ update-mime-database %{_datadir}/mime
 umask 022
 [ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
 
-%files
+%files -f gdesklets.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO
 %attr(755,root,root) %{_bindir}/*
-%{_pkgconfigdir}/*.pc
-%dir %{_datadir}/gdesklets
-%{_datadir}/gdesklets/*.py[co]
-%attr(755,root,root) %{_datadir}/gdesklets/gdesklets
-%attr(755,root,root) %{_datadir}/gdesklets/gdesklets-daemon
-%attr(755,root,root) %{_datadir}/gdesklets/gdesklets-shell
-%dir %{_datadir}/gdesklets/locale
-%lang(ar) %{_datadir}/gdesklets/locale/ar
-%lang(bg) %{_datadir}/gdesklets/locale/bg
-%lang(ca) %{_datadir}/gdesklets/locale/ca
-%lang(cs) %{_datadir}/gdesklets/locale/cs
-%lang(de) %{_datadir}/gdesklets/locale/de
-%lang(es) %{_datadir}/gdesklets/locale/es
-%lang(el) %{_datadir}/gdesklets/locale/el
-%lang(en_CA) %{_datadir}/gdesklets/locale/en_CA
-%lang(en_GB) %{_datadir}/gdesklets/locale/en_GB
-%lang(eu) %{_datadir}/gdesklets/locale/eu
-%lang(hr) %{_datadir}/gdesklets/locale/hr
-%lang(hu) %{_datadir}/gdesklets/locale/hu
-%lang(is) %{_datadir}/gdesklets/locale/is
-%lang(it) %{_datadir}/gdesklets/locale/it
-%lang(ja) %{_datadir}/gdesklets/locale/ja
-%lang(ko) %{_datadir}/gdesklets/locale/ko
-%lang(lt) %{_datadir}/gdesklets/locale/lt
-%lang(tr) %{_datadir}/gdesklets/locale/tr
-%lang(fr) %{_datadir}/gdesklets/locale/fr
-%lang(he) %{_datadir}/gdesklets/locale/he
-%lang(nb) %{_datadir}/gdesklets/locale/nb
-%lang(nl) %{_datadir}/gdesklets/locale/nl
-%lang(pl) %{_datadir}/gdesklets/locale/pl
-%lang(pt) %{_datadir}/gdesklets/locale/pt
-%lang(pt_BR) %{_datadir}/gdesklets/locale/pt_BR
-%lang(ru) %{_datadir}/gdesklets/locale/ru
-%lang(sq) %{_datadir}/gdesklets/locale/sq
-%lang(sr) %{_datadir}/gdesklets/locale/sr
-%lang(sr@Latn) %{_datadir}/gdesklets/locale/sr@Latn
-%lang(sv) %{_datadir}/gdesklets/locale/sv
-%lang(az) %{_datadir}/gdesklets/locale/az
-%lang(ms) %{_datadir}/gdesklets/locale/ms
-%{_datadir}/gdesklets/Controls
-%{_datadir}/gdesklets/config
-%{_datadir}/gdesklets/data
-%{_datadir}/gdesklets/display
-%{_datadir}/gdesklets/factory
-%{_datadir}/gdesklets/libdesklets
-%{_datadir}/gdesklets/main
-%{_datadir}/gdesklets/plugin
-%{_datadir}/gdesklets/scripting
-%{_datadir}/gdesklets/sensor
-%{_datadir}/gdesklets/shell
-%{_datadir}/gdesklets/utils
-%{_datadir}/gdesklets/Sensors
-%{_datadir}/gdesklets/Displays
+#%{_pkgconfigdir}/*.pc
+%dir %{_libdir}/gdesklets
+%{_libdir}/gdesklets/*.py[co]
+%attr(755,root,root) %{_libdir}/gdesklets/gdesklets
+%attr(755,root,root) %{_libdir}/gdesklets/gdesklets-daemon
+%attr(755,root,root) %{_libdir}/gdesklets/gdesklets-logview
+%attr(755,root,root) %{_libdir}/gdesklets/gdesklets-migration-tool
+%attr(755,root,root) %{_libdir}/gdesklets/gdesklets-shell
+
+%dir %{_libdir}/gdesklets/Controls
+%{_libdir}/gdesklets/Controls/*.py[co]
+%dir %{_libdir}/gdesklets/Controls/Calendar
+%{_libdir}/gdesklets/Controls/Calendar/*.py[co]
+%dir %{_libdir}/gdesklets/Controls/HDDTemp
+%{_libdir}/gdesklets/Controls/HDDTemp/*.py[co]
+%dir %{_libdir}/gdesklets/Controls/Sensors
+%{_libdir}/gdesklets/Controls/Sensors/*.py[co]
+%dir %{_libdir}/gdesklets/Controls/System
+%{_libdir}/gdesklets/Controls/System/*.py[co]
+%dir %{_libdir}/gdesklets/Controls/Time
+%{_libdir}/gdesklets/Controls/Time/*.py[co]
+
+%dir %{_libdir}/gdesklets/Sensors
+%dir %{_libdir}/gdesklets/Sensors/External
+%{_libdir}/gdesklets/Sensors/External/*.py[co]
+%dir %{_libdir}/gdesklets/Sensors/FontSelector
+%{_libdir}/gdesklets/Sensors/FontSelector/*.py[co]
+
+%dir %{_libdir}/gdesklets/config
+%{_libdir}/gdesklets/config/*.py[co]
+%dir %{_libdir}/gdesklets/display
+%{_libdir}/gdesklets/display/*.py[co]
+%dir %{_libdir}/gdesklets/factory
+%{_libdir}/gdesklets/factory/*.py[co]
+
+%dir %{_libdir}/gdesklets/libdesklets
+%{_libdir}/gdesklets/libdesklets/*.py[co]
+%dir %{_libdir}/gdesklets/libdesklets/controls
+%{_libdir}/gdesklets/libdesklets/controls/*.py[co]
+%dir %{_libdir}/gdesklets/libdesklets/system
+%{_libdir}/gdesklets/libdesklets/system/*.py[co]
+%{_libdir}/gdesklets/libdesklets/system/*.so
+%dir %{_libdir}/gdesklets/libdesklets/system/FreeBSD
+%{_libdir}/gdesklets/libdesklets/system/FreeBSD/*.py[co]
+%dir %{_libdir}/gdesklets/libdesklets/system/Linux
+%{_libdir}/gdesklets/libdesklets/system/Linux/*.py[co]
+%dir %{_libdir}/gdesklets/libdesklets/system/NetBSD
+%{_libdir}/gdesklets/libdesklets/system/NetBSD/*.py[co]
+%dir %{_libdir}/gdesklets/libdesklets/system/OpenBSD
+%{_libdir}/gdesklets/libdesklets/system/OpenBSD/*.py[co]
+
+%dir %{_libdir}/gdesklets/main
+%{_libdir}/gdesklets/main/*.py[co]
+%dir %{_libdir}/gdesklets/plugin
+%{_libdir}/gdesklets/plugin/*.py[co]
+%dir %{_libdir}/gdesklets/scripting
+%{_libdir}/gdesklets/scripting/*.py[co]
+%dir %{_libdir}/gdesklets/sensor
+%{_libdir}/gdesklets/sensor/*.py[co]
+%dir %{_libdir}/gdesklets/shell
+%{_libdir}/gdesklets/shell/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins
+%dir %{_libdir}/gdesklets/shell/plugins/ControlBrowser
+%{_libdir}/gdesklets/shell/plugins/ControlBrowser/*.py[co]
+%{_libdir}/gdesklets/shell/plugins/ControlBrowser/*.png
+%dir %{_libdir}/gdesklets/shell/plugins/ControlCollection
+%{_libdir}/gdesklets/shell/plugins/ControlCollection/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/ControlsView
+%{_libdir}/gdesklets/shell/plugins/ControlsView/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/DisplayBrowser
+%{_libdir}/gdesklets/shell/plugins/DisplayBrowser/*.py[co]
+%{_libdir}/gdesklets/shell/plugins/DisplayBrowser/*.png
+%dir %{_libdir}/gdesklets/shell/plugins/DisplayCollection
+%{_libdir}/gdesklets/shell/plugins/DisplayCollection/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/DisplayView
+%{_libdir}/gdesklets/shell/plugins/DisplayView/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/Help
+%{_libdir}/gdesklets/shell/plugins/Help/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/Menu
+%{_libdir}/gdesklets/shell/plugins/Menu/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/PackageInstaller
+%{_libdir}/gdesklets/shell/plugins/PackageInstaller/*.py[co]
+%{_libdir}/gdesklets/shell/plugins/PackageInstaller/*.png
+%dir %{_libdir}/gdesklets/shell/plugins/Profiles
+%{_libdir}/gdesklets/shell/plugins/Profiles/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/Shell
+%{_libdir}/gdesklets/shell/plugins/Shell/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/StatusBar
+%{_libdir}/gdesklets/shell/plugins/StatusBar/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/ViewSwitch
+%{_libdir}/gdesklets/shell/plugins/ViewSwitch/*.py[co]
+%dir %{_libdir}/gdesklets/shell/plugins/gDeskletsClient
+%{_libdir}/gdesklets/shell/plugins/gDeskletsClient/*.py[co]
+
+%dir %{_libdir}/gdesklets/utils
+%{_libdir}/gdesklets/utils/*.py[co]
+%{_libdir}/gdesklets/utils/*.so
+
+%{_libdir}/gdesklets/data
 %{_datadir}/mime/packages/*.xml
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
