@@ -19,8 +19,6 @@ BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
 BuildRequires:	swig-python
 BuildRequires:	rpm-pythonprov
-Requires:	%{name}-display
-Requires:	%{name}-sensor
 Requires:	python >= 2.3
 Requires:	python-gnome >= 2.0.0
 Requires:	python-pygtk >= 2.0.0
