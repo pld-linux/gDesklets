@@ -23,6 +23,7 @@ BuildRequires:	rpm-pythonprov
 Requires:	python >= 2.3
 Requires:	python-gnome >= 2.0.0
 Requires:	python-pygtk >= 2.0.0
+Requires:	python-gnome-bonobo >= 2.0.0
 Requires:	python-gnome-gconf >= 2.0.0
 Requires:	python-gnome-ui >= 2.0.0
 Requires(post): GConf2
