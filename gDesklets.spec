@@ -19,8 +19,8 @@ Requires:	%{name}-sensor
 Requires:	python >= 2.3
 Requires:	python-gnome >= 1.99.18
 Requires:	python-pygtk >= 1.99.18
-Requires:	python-gnome-gconf
-Requires:	python-gnome-ui
+Requires:	python-gnome-gconf >= 1.99.18
+Requires:	python-gnome-ui >= 1.99.18
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
