@@ -25,7 +25,6 @@ BuildRequires:	libtool
 BuildRequires:	python >= 1:2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
-BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python
 Requires:	python-gnome >= 2.0.0
 Requires:	python-gnome-bonobo >= 2.0.0
