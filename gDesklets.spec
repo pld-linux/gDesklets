@@ -14,12 +14,14 @@ URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	python >= 2.3
+BuildRequires:	python-modules >= 2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
 BuildRequires:	swig-python
 Requires:	%{name}-display
 Requires:	%{name}-sensor
 Requires:	python >= 2.3
+Requires:	python-modules >= 2.3
 Requires:	python-gnome >= 2.0.0
 Requires:	python-pygtk >= 2.0.0
 Requires:	python-gnome-gconf >= 2.0.0
@@ -67,16 +69,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mime-info/*
 %dir %{_datadir}/gdesklets
 %attr(755,root,root) %{_datadir}/gdesklets/gdesklets
-%{_datadir}/gdesklets/config
-%{_datadir}/gdesklets/data
-%{_datadir}/gdesklets/desktop
-%{_datadir}/gdesklets/display
-%{_datadir}/gdesklets/factory
-%{_datadir}/gdesklets/libdesklets
 %dir %{_datadir}/gdesklets/locale
 %lang(ar) %{_datadir}/gdesklets/locale/ar
 %lang(de) %{_datadir}/gdesklets/locale/de
 %lang(es) %{_datadir}/gdesklets/locale/es
+%lang(el) %{_datadir}/gdesklets/locale/el
+%lang(ko) %{_datadir}/gdesklets/locale/ko
+%lang(tr) %{_datadir}/gdesklets/locale/tr
 %lang(fr) %{_datadir}/gdesklets/locale/fr
 %lang(he) %{_datadir}/gdesklets/locale/he
 %lang(nl) %{_datadir}/gdesklets/locale/nl
@@ -86,6 +85,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sr) %{_datadir}/gdesklets/locale/sr
 %lang(sr@Latn) %{_datadir}/gdesklets/locale/sr@Latn
 %lang(sv) %{_datadir}/gdesklets/locale/sv
+%{_datadir}/gdesklets/config
+%{_datadir}/gdesklets/data
+%{_datadir}/gdesklets/desktop
+%{_datadir}/gdesklets/display
+%{_datadir}/gdesklets/factory
+%{_datadir}/gdesklets/libdesklets
 %{_datadir}/gdesklets/main
 %{_datadir}/gdesklets/sensor
 %{_datadir}/gdesklets/utils
