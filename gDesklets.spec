@@ -15,26 +15,26 @@ URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.2.0
 BuildRequires:	intltool
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgtop-devel >= 2.0.0
 BuildRequires:	librsvg-devel
 BuildRequires:	libtool
-BuildRequires:	python >= 2.3
+BuildRequires:	python >= 1:2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
-BuildRequires:	swig-python
 BuildRequires:	rpm-pythonprov
-BuildRequires:	gettext-devel
-Requires:	python >= 2.3
+BuildRequires:	swig-python
+%pyrequires_eq	python
 Requires:	python-gnome >= 2.0.0
-Requires:	python-pygtk-gtk >= 2.0.0
 Requires:	python-gnome-bonobo >= 2.0.0
 Requires:	python-gnome-bonobo-ui >= 2.0.0
 Requires:	python-gnome-gconf >= 2.0.0
 Requires:	python-gnome-gtkhtml >= 2.0.0
 Requires:	python-gnome-ui >= 2.0.0
+Requires:	python-pygtk-gtk >= 2.0.0
 Requires(post): GConf2
 Requires(post):	shared-mime-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -195,7 +195,7 @@ umask 022
 
 %dir %{_libdir}/gdesklets/utils
 %{_libdir}/gdesklets/utils/*.py[co]
-%{_libdir}/gdesklets/utils/*.so
+%attr(755,root,root) %{_libdir}/gdesklets/utils/*.so
 
 %{_libdir}/gdesklets/data
 %{_datadir}/mime/packages/*.xml
