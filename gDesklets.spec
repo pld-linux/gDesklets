@@ -2,7 +2,7 @@ Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.33.1
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
@@ -76,6 +76,8 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gdesklets/{Sensors,Displays}
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/gdesklets
 
 find $RPM_BUILD_ROOT%{_datadir}/gdesklets -name "*.py" -exec rm -f {} \;
+find $RPM_BUILD_ROOT%{_libdir}/gdesklets -name "*.py" -exec rm -f {} \;
+find $RPM_BUILD_ROOT%{_libdir}/gdesklets -name "*.la" -exec rm -f {} \;
 rm -f $RPM_BUILD_ROOT%{_datadir}/mime/{XMLnamespaces,globs,magic,application/*}
 rm -f $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 
@@ -119,6 +121,8 @@ umask 022
 %{_libdir}/gdesklets/Controls/System/*.py[co]
 %dir %{_libdir}/gdesklets/Controls/Time
 %{_libdir}/gdesklets/Controls/Time/*.py[co]
+%dir %{_libdir}/gdesklets/Controls/URI
+%{_libdir}/gdesklets/Controls/URI/*.py[co]
 
 %dir %{_libdir}/gdesklets/Sensors
 %dir %{_libdir}/gdesklets/Sensors/External
