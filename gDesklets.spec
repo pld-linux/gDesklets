@@ -4,12 +4,12 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.25.1
-Release:	2
+Version:	0.26
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
-# Source0-md5:	91a25ffc1a158fa3e0a83c28969f685c
+# Source0-md5:	a13af8ab694fd7e1ef2ef21634aa3e39
 Patch0:		%{name}-am.patch
 URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	GConf2-devel >= 2.4.0
@@ -84,10 +84,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/gdesklets/locale
 %lang(ar) %{_datadir}/gdesklets/locale/ar
 %lang(ca) %{_datadir}/gdesklets/locale/ca
+%lang(cs) %{_datadir}/gdesklets/locale/cs
 %lang(de) %{_datadir}/gdesklets/locale/de
 %lang(es) %{_datadir}/gdesklets/locale/es
 %lang(el) %{_datadir}/gdesklets/locale/el
 %lang(eu) %{_datadir}/gdesklets/locale/eu
+%lang(hr) %{_datadir}/gdesklets/locale/hr
 %lang(it) %{_datadir}/gdesklets/locale/it
 %lang(ja) %{_datadir}/gdesklets/locale/ja
 %lang(ko) %{_datadir}/gdesklets/locale/ko
@@ -96,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/gdesklets/locale/fr
 %lang(he) %{_datadir}/gdesklets/locale/he
 %lang(nl) %{_datadir}/gdesklets/locale/nl
+%lang(no) %{_datadir}/gdesklets/locale/no
 %lang(pl) %{_datadir}/gdesklets/locale/pl
 %lang(pt) %{_datadir}/gdesklets/locale/pt
 %lang(pt_BR) %{_datadir}/gdesklets/locale/pt_BR
