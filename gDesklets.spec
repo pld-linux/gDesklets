@@ -10,7 +10,6 @@ License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
 # Source0-md5:	1c7509b454e41d443c2bda43c4472a05
-Patch0:		%{name}-python-detect.patch
 URL:		http://gdesklets.gnomedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -35,7 +34,6 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
 %{__aclocal}
