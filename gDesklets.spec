@@ -42,7 +42,7 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 %build
 %{__aclocal}
 %{__automake}
-%{__autoconf} #disabled because it fuck up everything.... WHY ??? */
+#%{__autoconf} #disabled because it fuck up everything.... WHY ??? */
 %configure \
 	--disable-schemas-install
 	
