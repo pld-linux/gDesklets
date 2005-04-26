@@ -1,12 +1,12 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.34
-Release:	0.2
+Version:	0.34.3
+Release:	0.3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.pycage.de/download/gdesklets/%{name}-%{version}.tar.bz2
-# Source0-md5:	26300dd23f06bb41b08ce0cd3979d1e5
+# Source0-md5:	83f8a3f7ad00a65a42fb4f2843152c92
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-locale-names.patch
 Patch2:		%{name}-disksize.patch
@@ -25,6 +25,7 @@ BuildRequires:	libtool
 BuildRequires:	python >= 1:2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
+BuildRequires:	python-pyorbit-devel >= 2.0.0
 %pyrequires_eq	python
 Requires:	python-gnome >= 2.0.0
 Requires:	python-gnome-bonobo >= 2.0.0
@@ -33,6 +34,7 @@ Requires:	python-gnome-gconf >= 2.0.0
 Requires:	python-gnome-gtkhtml >= 2.0.0
 Requires:	python-gnome-ui >= 2.0.0
 Requires:	python-pygtk-gtk >= 2.0.0
+Requires:	python-pyorbit >= 2.0.0
 Requires(post): GConf2
 Requires(post):	shared-mime-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -107,6 +109,7 @@ umask 022
 %attr(755,root,root) %{_libdir}/gdesklets/gdesklets-logview
 %attr(755,root,root) %{_libdir}/gdesklets/gdesklets-migration-tool
 %attr(755,root,root) %{_libdir}/gdesklets/gdesklets-shell
+%attr(755,root,root) %{_libdir}/gdesklets/ctrlinfo
 
 %dir %{_libdir}/gdesklets/Controls
 %{_libdir}/gdesklets/Controls/*.py[co]
