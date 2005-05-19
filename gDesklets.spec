@@ -26,7 +26,11 @@ BuildRequires:	python >= 1:2.3
 BuildRequires:	python-gnome-devel >= 2.0.0
 BuildRequires:	python-pygtk-devel >= 2.0.0
 BuildRequires:	python-pyorbit-devel >= 2.0.0
+BuildRequires:	rpmbuild(macros) >= 1.197
 %pyrequires_eq	python
+Requires(post,preun):	GConf2
+Requires(post,postun):	desktop-file-utils
+Requires(post,postun):	shared-mime-info
 Requires:	python-gnome >= 2.0.0
 Requires:	python-gnome-bonobo >= 2.0.0
 Requires:	python-gnome-bonobo-ui >= 2.0.0
@@ -35,8 +39,6 @@ Requires:	python-gnome-gtkhtml >= 2.0.0
 Requires:	python-gnome-ui >= 2.0.0
 Requires:	python-pygtk-gtk >= 2.0.0
 Requires:	python-pyorbit >= 2.0.0
-Requires(post): GConf2
-Requires(post):	shared-mime-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,7 +63,6 @@ mv po/{no,nb}.po
 %{__autoconf}
 %configure \
 	--disable-schemas-install
-	
 %{__make} \
 	CFLAGS="%{rpmcflags}"
 
@@ -88,14 +89,20 @@ rm -f $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 rm -rf $RPM_BUILD_ROOT
 
 %post
+%gconf_schema_install gdesklets-display-thumbnail.schemas
+%update_desktop_database_post
 umask 022
-%gconf_schema_install
 update-mime-database %{_datadir}/mime ||:
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+
+%preun
+%gconf_schema_uninstall gdesklets-display-thumbnail.schemas
 
 %postun
-umask 022
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
+%update_desktop_database_postun
+if [ $1 = 0 ]; then
+	umask 022
+	update-mime-database %{_datadir}/mime
+fi
 
 %files -f gdesklets.lang
 %defattr(644,root,root,755)
