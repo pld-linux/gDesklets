@@ -12,33 +12,33 @@ Patch1:		%{name}-locale-names.patch
 Patch2:		%{name}-disksize.patch
 Patch3:		%{name}-plugin_registry.patch
 URL:		http://gdesklets.gnomedesktop.org/
-BuildRequires:	GConf2-devel >= 2.4.0
+BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2:2.2.0
 BuildRequires:	intltool
-BuildRequires:	libgnomeui-devel >= 2.2.0
-BuildRequires:	libgtop-devel >= 2.0.0
+BuildRequires:	libgnomeui-devel >= 2.14.0
+BuildRequires:	libgtop-devel >= 2.14.0
 BuildRequires:	librsvg-devel
 BuildRequires:	libtool
 BuildRequires:	python >= 1:2.3
-BuildRequires:	python-gnome-devel >= 2.0.0
-BuildRequires:	python-pygtk-devel >= 2.0.0
-BuildRequires:	python-pyorbit-devel >= 2.0.0
+BuildRequires:	python-gnome-devel >= 2.12.4
+BuildRequires:	python-pygtk-devel >= 2.8.6
+BuildRequires:	python-pyorbit-devel >= 2.14.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %pyrequires_eq	python
 Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
-Requires:	python-gnome >= 2.0.0
-Requires:	python-gnome-bonobo >= 2.0.0
-Requires:	python-gnome-bonobo-ui >= 2.0.0
-Requires:	python-gnome-gconf >= 2.0.0
-Requires:	python-gnome-gtkhtml >= 2.0.0
-Requires:	python-gnome-ui >= 2.0.0
-Requires:	python-pygtk-gtk >= 2.0.0
-Requires:	python-pyorbit >= 2.0.0
+Requires:	python-gnome >= 2.12.4
+Requires:	python-gnome-bonobo >= 2.12.4
+Requires:	python-gnome-bonobo-ui >= 2.12.4
+Requires:	python-gnome-gconf >= 2.12.4
+Requires:	python-gnome-gtkhtml >= 2.12.4
+Requires:	python-gnome-ui >= 2.12.4
+Requires:	python-pygtk-gtk >= 2.8.6
+Requires:	python-pyorbit >= 2.14.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
