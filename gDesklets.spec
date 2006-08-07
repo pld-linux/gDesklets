@@ -1,12 +1,16 @@
+#
+# TODO:
+# - check unpackaged mime-related files
+#
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.35
+Version:	0.35.3
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://gdesklets.org/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	1ba952f54d74c3b31732d0188b48512f
+# Source0-md5:	3f9ce7f2ca4522bc96cb9bc4a4b91774
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-locale-names.patch
 Patch2:		%{name}-disksize.patch
@@ -49,20 +53,23 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1 -b .wiget
+#patch 1&2 don't apply anymore
+#%patch0 -p1
+#%patch1 -p1 -b .wiget
 #%%patch2 -p1
 %patch3 -p1
 
-mv po/{no,nb}.po
+#breaks build
+#mv po/{no,nb}.po
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__automake}
 %{__autoconf}
-%configure \
-	--disable-schemas-install
+%configure
+# Doesn't produce schemas anyway now
+#	--disable-schemas-install
 %{__make} \
 	CFLAGS="%{rpmcflags}"
 
@@ -110,7 +117,6 @@ fi
 %attr(755,root,root) %{_bindir}/*
 #%{_pkgconfigdir}/*.pc
 %dir %{_libdir}/gdesklets
-%{_libdir}/gdesklets/*.py[co]
 %attr(755,root,root) %{_libdir}/gdesklets/gdesklets
 %attr(755,root,root) %{_libdir}/gdesklets/gdesklets-daemon
 %attr(755,root,root) %{_libdir}/gdesklets/gdesklets-logview
@@ -218,4 +224,3 @@ fi
 %{_pixmapsdir}/*
 %{_iconsdir}/gnome/48x48/mimetypes/*.png
 %{_mandir}/man1/*
-%{_sysconfdir}/gconf/schemas/*.schemas
