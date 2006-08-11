@@ -1,12 +1,13 @@
 #
 # TODO:
 # - check unpackaged mime-related files
+# - check/fix no/nb locale
 #
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.35.3
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://gdesklets.org/downloads/%{name}-%{version}.tar.bz2
