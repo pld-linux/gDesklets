@@ -1,23 +1,10 @@
---- gDesklets-0.33/tools/Makefile.am.wiget	2003-12-09 18:53:21.000000000 +0100
-+++ gDesklets-0.33/tools/Makefile.am	2005-01-03 08:54:36.090980834 +0100
-@@ -1,6 +1,6 @@
- bin_PROGRAMS = gdesklets-display-thumbnailer
- 
--AM_CFLAGS = -Wall                          \
-+gdesklets_display_thumbnailer_CFLAGS = -Wall                          \
-             -Wstrict-prototypes             \
-             -Wmissing-prototypes            \
-             -DG_DISABLE_DEPRECATED          \
-
 --- gDesklets-0.33/configure.in.wiget	2005-01-01 18:04:48.000000000 +0100
 +++ gDesklets-0.33/configure.in	2005-01-03 08:59:46.739872833 +0100
-@@ -53,8 +53,8 @@
-     AC_MSG_RESULT(no)
+@@ -45,7 +45,7 @@
  fi
  
--AM_PATH_PYTHON([2.3])
+ AM_PATH_PYTHON([2.3])
 -PYTHON_PREFIX=`python -c "import sys; print sys.prefix"`
-+AM_PATH_PYTHON([2.4])
 +PYTHON_PREFIX=`$PYTHON -c "import sys; print sys.prefix"`
  PYTHON_CFLAGS="-I$PYTHON_PREFIX/include/python$PYTHON_VERSION"
  AC_CHECK_HEADER([$PYTHON_PREFIX/include/python$PYTHON_VERSION/Python.h],,
