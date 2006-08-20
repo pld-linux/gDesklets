@@ -1,8 +1,3 @@
-#
-# TODO:
-# - check unpackaged mime-related files
-# - check/fix no/nb locale
-#
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
@@ -13,27 +8,24 @@ Group:		X11/Applications
 Source0:	http://gdesklets.org/downloads/%{name}-%{version}.tar.bz2
 # Source0-md5:	3f9ce7f2ca4522bc96cb9bc4a4b91774
 Patch0:		%{name}-am.patch
-Patch1:		%{name}-locale-names.patch
-Patch2:		%{name}-disksize.patch
-Patch3:		%{name}-plugin_registry.patch
+Patch1:		%{name}-plugin_registry.patch
 URL:		http://gdesklets.gnomedesktop.org/
-BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2:2.2.0
+BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool
 BuildRequires:	libgnomeui-devel >= 2.14.0
 BuildRequires:	libgtop-devel >= 2.14.0
 BuildRequires:	librsvg-devel
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRequires:	python >= 1:2.3
 BuildRequires:	python-gnome-devel >= 2.12.4
-BuildRequires:	python-pygtk-devel >= 2.8.6
+BuildRequires:	python-pygtk-devel >= 2:2.8.6
 BuildRequires:	python-pyorbit-devel >= 2.14.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %pyrequires_eq	python
-Requires(post,preun):	GConf2
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
 Requires:	python-gnome >= 2.12.4
@@ -42,7 +34,7 @@ Requires:	python-gnome-bonobo-ui >= 2.12.4
 Requires:	python-gnome-gconf >= 2.12.4
 Requires:	python-gnome-extras-gtkhtml >= 2.12.4
 Requires:	python-gnome-ui >= 2.12.4
-Requires:	python-pygtk-gtk >= 2.8.6
+Requires:	python-pygtk-gtk >= 2:2.8.6
 Requires:	python-pyorbit >= 2.14.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,14 +46,8 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 
 %prep
 %setup -q
-#patch 1&2 don't apply anymore
-#%patch0 -p1
-#%patch1 -p1 -b .wiget
-#%%patch2 -p1
-%patch3 -p1
-
-#breaks build
-#mv po/{no,nb}.po
+%patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -69,8 +55,6 @@ gDesklets udostêpnia zaawansowan± architekturê dla apletów.
 %{__automake}
 %{__autoconf}
 %configure
-# Doesn't produce schemas anyway now
-#	--disable-schemas-install
 %{__make} \
 	CFLAGS="%{rpmcflags}"
 
@@ -80,7 +64,8 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gdesklets/{Sensors,Displays}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+	UPDATE_DESKTOP_DATABASE= \
+	UPDATE_MIME_DATABASE=
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/gdesklets
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/gdesklets
@@ -88,8 +73,8 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gdesklets/{Sensors,Displays}
 find $RPM_BUILD_ROOT%{_datadir}/gdesklets -name "*.py" -exec rm -f {} \;
 find $RPM_BUILD_ROOT%{_libdir}/gdesklets -name "*.py" -exec rm -f {} \;
 find $RPM_BUILD_ROOT%{_libdir}/gdesklets -name "*.la" -exec rm -f {} \;
-rm -f $RPM_BUILD_ROOT%{_datadir}/mime/{XMLnamespaces,globs,magic,application/*}
-rm -f $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
+
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang gdesklets
 
@@ -97,13 +82,9 @@ rm -f $RPM_BUILD_ROOT%{_desktopdir}/mimeinfo.cache
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%gconf_schema_install gdesklets-display-thumbnail.schemas
 %update_desktop_database_post
 umask 022
 update-mime-database %{_datadir}/mime ||:
-
-%preun
-%gconf_schema_uninstall gdesklets-display-thumbnail.schemas
 
 %postun
 %update_desktop_database_postun
