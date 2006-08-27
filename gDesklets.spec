@@ -24,6 +24,7 @@ BuildRequires:	python >= 1:2.3
 BuildRequires:	python-gnome-devel >= 2.12.4
 BuildRequires:	python-pygtk-devel >= 2:2.8.6
 BuildRequires:	python-pyorbit-devel >= 2.14.0
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 %pyrequires_eq	python
 Requires(post,postun):	desktop-file-utils
