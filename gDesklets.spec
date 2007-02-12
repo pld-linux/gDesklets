@@ -1,5 +1,5 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
-Summary(pl):	gDesklets - zaawansowana architektura dla apletów
+Summary(pl.UTF-8):   gDesklets - zaawansowana architektura dla apletÃ³w
 Name:		gDesklets
 Version:	0.35.3
 Release:	0.1
@@ -42,8 +42,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 gDesklets provides an advanced architecture for desktop applets.
 
-%description -l pl
-gDesklets udostêpnia zaawansowan± architekturê dla apletów.
+%description -l pl.UTF-8
+gDesklets udostÄ™pnia zaawansowanÄ… architekturÄ™ dla apletÃ³w.
 
 %prep
 %setup -q
