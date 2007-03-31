@@ -5,7 +5,8 @@ Version:	0.35.3
 Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://gdesklets.org/downloads/%{name}-%{version}.tar.bz2
+#Source0Download: http://gdesklets.org/
+Source0:	http://gdesklets.org/files/%{name}-%{version}.tar.bz2
 # Source0-md5:	3f9ce7f2ca4522bc96cb9bc4a4b91774
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-plugin_registry.patch
