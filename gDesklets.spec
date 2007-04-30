@@ -1,13 +1,13 @@
 Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl.UTF-8):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
-Version:	0.35.3
-Release:	0.1
+Version:	0.35.4
+Release:	1
 License:	GPL
 Group:		X11/Applications
 #Source0Download: http://gdesklets.org/
 Source0:	http://gdesklets.org/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	3f9ce7f2ca4522bc96cb9bc4a4b91774
+# Source0-md5:	61644df16206ce8797757ab306badd28
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-plugin_registry.patch
 URL:		http://gdesklets.gnomedesktop.org/
@@ -27,6 +27,7 @@ BuildRequires:	python-pygtk-devel >= 2:2.8.6
 BuildRequires:	python-pyorbit-devel >= 2.14.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	shared-mime-info
 %pyrequires_eq	python
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	shared-mime-info
@@ -75,8 +76,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gdesklets/{Sensors,Displays}
 find $RPM_BUILD_ROOT%{_datadir}/gdesklets -name "*.py" -exec rm -f {} \;
 find $RPM_BUILD_ROOT%{_libdir}/gdesklets -name "*.py" -exec rm -f {} \;
 find $RPM_BUILD_ROOT%{_libdir}/gdesklets -name "*.la" -exec rm -f {} \;
-
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang gdesklets
 
