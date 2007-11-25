@@ -54,6 +54,7 @@ gDesklets udostępnia zaawansowaną architekturę dla apletów.
 
 %build
 %{__libtoolize}
+%{__intltoolize}
 %{__aclocal}
 %{__automake}
 %{__autoconf}
