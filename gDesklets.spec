@@ -2,7 +2,7 @@ Summary:	gDesklets - an advanced architecture for desktop applets
 Summary(pl.UTF-8):	gDesklets - zaawansowana architektura dla apletów
 Name:		gDesklets
 Version:	0.35.4
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications
 #Source0Download: http://gdesklets.org/
@@ -68,6 +68,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gdesklets/{Sensors,Displays}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	mimeicondir=%{_iconsdir}/hicolor/48x48/mimetypes \
 	UPDATE_DESKTOP_DATABASE= \
 	UPDATE_MIME_DATABASE=
 
@@ -206,5 +207,5 @@ fi
 %{_datadir}/mime/packages/*.xml
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
-%{_iconsdir}/gnome/48x48/mimetypes/*.png
+%{_iconsdir}/hicolor/*/*/*.png
 %{_mandir}/man1/*
