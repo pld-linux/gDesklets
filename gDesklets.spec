@@ -10,7 +10,8 @@ Source0:	http://gdesklets.org/files/%{name}-%{version}.tar.bz2
 # Source0-md5:	61644df16206ce8797757ab306badd28
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-plugin_registry.patch
-URL:		http://gdesklets.gnomedesktop.org/
+Patch2:		install-duplicate.patch
+URL:		http://gdesklets.de/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -34,8 +35,8 @@ Requires(post,postun):	shared-mime-info
 Requires:	python-gnome >= 2.12.4
 Requires:	python-gnome-bonobo >= 2.12.4
 Requires:	python-gnome-bonobo-ui >= 2.12.4
-Requires:	python-gnome-gconf >= 2.12.4
 Requires:	python-gnome-extras-gtkhtml >= 2.12.4
+Requires:	python-gnome-gconf >= 2.12.4
 Requires:	python-gnome-ui >= 2.12.4
 Requires:	python-pygtk-gtk >= 2:2.8.6
 Requires:	python-pyorbit >= 2.14.0
@@ -51,6 +52,7 @@ gDesklets udostępnia zaawansowaną architekturę dla apletów.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -65,8 +67,7 @@ gDesklets udostępnia zaawansowaną architekturę dla apletów.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/gdesklets/{Sensors,Displays}
-
-%{__make} install \
+%{__make} install -j1 \
 	DESTDIR=$RPM_BUILD_ROOT \
 	mimeicondir=%{_iconsdir}/hicolor/48x48/mimetypes \
 	UPDATE_DESKTOP_DATABASE= \
@@ -86,15 +87,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %update_desktop_database_post
-umask 022
-update-mime-database %{_datadir}/mime ||:
+%update_mime_database
 
 %postun
 %update_desktop_database_postun
-if [ $1 = 0 ]; then
-	umask 022
-	update-mime-database %{_datadir}/mime
-fi
+%update_mime_database
 
 %files -f gdesklets.lang
 %defattr(644,root,root,755)

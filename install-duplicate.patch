@@ -1,0 +1,12 @@
+install(1) does not like file listed twice on commandline
+
+--- gDesklets-0.36.2/config/Makefile.am~	2008-12-30 16:55:54.000000000 +0200
++++ gDesklets-0.36.2/config/Makefile.am	2011-01-17 10:42:51.178674034 +0200
+@@ -23,7 +23,6 @@
+ 	ConfigDialog.py   \
+ 	ConfigWidget.py   \
+ 	ConfigManager.py  \
+-	ConfigWidget.py   \
+ 	DaemonConfigger.py  \
+ 	DisplayConfigger.py \
+ 	StateSaver.py     \
