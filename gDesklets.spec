@@ -14,7 +14,7 @@ Patch2:		install-duplicate.patch
 URL:		http://gdesklets.de/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool
 BuildRequires:	libgnomeui-devel >= 2.14.0
